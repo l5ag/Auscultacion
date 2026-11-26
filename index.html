@@ -108,7 +108,7 @@ h2{margin:0 0 .4em;font-size:1.6em;line-height:1.1;font-weight:600;font-stretch:
       <h2 id="h-z1">En superficie y edificios</h2>
       <ul class="lks">
         <li><a class="lk" data-k="hitos" tabindex="0"><span class="num">1</span><span><span class="n">Hitos</span><span class="d">Asientos en superficie</span></span></a></li>
-        <li><a class="lk" data-k="regletas" tabindex="0"><span class="num">2</span><span><span class="n">Regletas</span><span class="d">Asientos en fachadas</span></span></a></li>
+        <li><a class="lk" data-k="regletas" target="_blank" rel="noopener" href="https://app.powerbi.com/view?r=eyJrIjoiZjk0NjJmZTYtNDYwYi00MmFmLWEzMmItYWQwMTBkZDY0MDI0IiwidCI6IjFlNDNmN2JlLWY1ODAtNDg2ZC04ZmYyLWQ2NmNjNTA1N2NjZCIsImMiOjl9&pageName=4bf3c7ad6074023cd0ed"><span class="num">2</span><span><span class="n">Regletas</span><span class="d">Asientos en fachadas</span></span><svg class="go" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12L12 4M6 4h6v6"/></svg></a></li>
         <li><a class="lk" data-k="miniprismas" tabindex="0"><span class="num">3</span><span><span class="n">Miniprismas</span><span class="d">Movimientos de edificios</span></span></a></li>
         <li><a class="lk" data-k="viviendas" tabindex="0"><span class="num">4</span><span><span class="n">Inspección de viviendas</span><span class="d">Estado de los edificios próximos</span></span></a></li>
       </ul>
@@ -150,6 +150,7 @@ h2{margin:0 0 .4em;font-size:1.6em;line-height:1.1;font-weight:600;font-stretch:
 (function(){
   /* ───────── Informes con vínculo. Para activar otro, añade aquí su URL y pon el mismo href en su fila. ───────── */
   var URLS={
+    regletas:'https://app.powerbi.com/view?r=eyJrIjoiZjk0NjJmZTYtNDYwYi00MmFmLWEzMmItYWQwMTBkZDY0MDI0IiwidCI6IjFlNDNmN2JlLWY1ODAtNDg2ZC04ZmYyLWQ2NmNjNTA1N2NjZCIsImMiOjl9&pageName=4bf3c7ad6074023cd0ed',
     convergencias:'https://app.powerbi.com/view?r=eyJrIjoiNjg1MzdjYjQtMDU4Yy00NWVmLWJkZDItZDNmY2RhNDQxNmQzIiwidCI6IjFlNDNmN2JlLWY1ODAtNDg2ZC04ZmYyLWQ2NmNjNTA1N2NjZCIsImMiOjl9'
   };
 
@@ -324,8 +325,8 @@ h2{margin:0 0 .4em;font-size:1.6em;line-height:1.1;font-weight:600;font-stretch:
   var it;
   /* 1 · Hitos, en la calzada */
   it=inst('above','hitos',[130,175,1]);
-  line(it,[[50,175,1],[130,175,1],[210,175,1]],S(1));   /* línea fina amarilla que une los tres hitos */
-  [50,130,210].forEach(function(x,i){halo(it,[x,175,1],10,i*.5);dot(it,[x,175,1],{r:5,fill:'#fff',stroke:AM,'stroke-width':3})});
+  line(it,[[130,115,1],[130,175,1],[130,235,1]],S(1));   /* línea fina amarilla que une los tres hitos (transversal al túnel) */
+  [115,175,235].forEach(function(y,i){halo(it,[130,y,1],10,i*.5);dot(it,[130,y,1],{r:5,fill:'#fff',stroke:AM,'stroke-width':3})});
   /* 2 · Regleta, al pie de la fachada */
   it=inst('above','regletas',[28,110.6,20]);
   halo(it,[28,110.6,20],13,1.2);
@@ -382,7 +383,7 @@ h2{margin:0 0 .4em;font-size:1.6em;line-height:1.1;font-weight:600;font-stretch:
   });
 
   /* ───────── Números: siempre visibles, sobre su instrumento ───────── */
-  var badges=[['hitos',1,[50,175,1]],['regletas',2,[28,110.6,36]],['miniprismas',3,[100,110.6,128]],['viviendas',4,[201,110.6,71]],
+  var badges=[['hitos',1,[130,115,1]],['regletas',2,[28,110.6,36]],['miniprismas',3,[100,110.6,128]],['viviendas',4,[201,110.6,71]],
     ['inclinometros',5,[40,240,-100]],['extensometros',6,[130,175,-70]],['piezometros',7,[225,130,-112]],
     ['control',8,[XS,235,-246]],['convergencias',9,[XS,175,-204]],['celulas',10,[XS,221.4,-228]]].map(function(b){
     var g=N(URLS[b[0]]?'a':'g',{'class':'bdg','data-k':b[0]},layers.badges);
